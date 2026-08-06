@@ -7,7 +7,6 @@
    02. Tipografia e utilitários
    03. Texturas, grain e vignette
    04. Cursor personalizado
-   05. Loader
    06. Botões
    07. Header e navegação
    08. Hero (Dobra 1)
@@ -22,6 +21,7 @@
    17. Footer e CTA fixo
    18. Animações de scroll (reveal)
    19. Responsividade
+   19b. Perfil leve para celular
    20. Acessibilidade / prefers-reduced-motion
    ========================================================================== */
 
@@ -82,7 +82,6 @@ body{
   text-rendering:optimizeLegibility;
 }
 
-body.is-loading{ overflow:hidden; }
 body.nav-open{ overflow:hidden; }
 
 img{ max-width:100%; height:auto; display:block; }
@@ -309,8 +308,13 @@ p:last-child{ margin-bottom:0; }
 /* ============================================================
    04. CURSOR PERSONALIZADO
    ============================================================ */
+/* Escondidos por padrão: em telas de toque não devem ocupar espaço no fluxo */
+.cursor, .cursor-dot{ display:none; }
+
 @media (hover:hover) and (pointer:fine){
   body.has-cursor, body.has-cursor *{ cursor:none !important; }
+
+  .cursor, .cursor-dot{ display:block; }
 
   .cursor{
     position:fixed; top:0; left:0;
@@ -362,92 +366,6 @@ p:last-child{ margin-bottom:0; }
   @keyframes clickRing{
     to{ width:90px; height:90px; margin:-45px 0 0 -45px; opacity:0; border-width:1px; }
   }
-}
-
-
-/* ============================================================
-   05. LOADER
-   ============================================================ */
-.loader{
-  position:fixed; inset:0; z-index:10000;
-  display:grid; place-items:center;
-  background:#000;
-  transition:opacity 1s var(--ease), visibility 1s;
-}
-.loader.is-done{ opacity:0; visibility:hidden; }
-
-.loader__inner{
-  text-align:center;
-  padding:24px;
-  position:relative;
-}
-.loader__inner::after{
-  content:'';
-  position:absolute; inset:-60% -40%;
-  background:radial-gradient(50% 50% at 50% 50%, rgba(200,155,60,.12), transparent 70%);
-  pointer-events:none;
-}
-
-.loader__rune{
-  width:64px; height:90px;
-  color:var(--gold);
-  opacity:0;
-  filter:drop-shadow(0 0 16px rgba(200,155,60,.7));
-}
-.loader__rune path{
-  stroke-dasharray:220;
-  stroke-dashoffset:220;
-}
-.loader.is-step1 .loader__rune{ opacity:1; transition:opacity .5s; }
-.loader.is-step1 .loader__rune path{ animation:runeDraw 1.15s var(--ease-out) forwards; }
-@keyframes runeDraw{ to{ stroke-dashoffset:0; } }
-
-.loader__logo{
-  margin-top:34px;
-  opacity:0; transform:translateY(14px);
-  transition:opacity .9s var(--ease), transform .9s var(--ease);
-}
-.loader.is-step2 .loader__logo{ opacity:1; transform:none; }
-.loader__logo-top{
-  display:block;
-  font-family:var(--f-title);
-  font-size:clamp(26px,4vw,40px);
-  font-weight:800;
-  letter-spacing:.16em;
-  color:#fff;
-}
-.loader__logo-bottom{
-  display:block;
-  font-family:var(--f-sub);
-  font-size:clamp(12px,1.4vw,15px);
-  letter-spacing:.52em;
-  color:var(--gold);
-  margin-top:6px;
-}
-
-.loader__text{
-  margin:30px 0 0;
-  font-family:var(--f-sub);
-  font-style:italic;
-  font-size:clamp(15px,1.7vw,21px);
-  color:var(--text-2);
-  letter-spacing:.06em;
-  opacity:0;
-  transition:opacity 1.2s var(--ease);
-}
-.loader.is-step3 .loader__text{ opacity:1; }
-
-.loader__bar{
-  width:180px; height:1px;
-  margin:32px auto 0;
-  background:rgba(255,255,255,.12);
-  overflow:hidden;
-}
-.loader__bar span{
-  display:block; height:100%; width:0;
-  background:linear-gradient(90deg,var(--bronze),var(--gold),var(--gold-hover));
-  box-shadow:0 0 12px rgba(200,155,60,.8);
-  transition:width .3s linear;
 }
 
 
@@ -558,23 +476,19 @@ p:last-child{ margin-bottom:0; }
   display:flex; align-items:center; justify-content:space-between; gap:24px;
 }
 
-/* Marca */
+/* Marca — logo oficial */
 .brand{ display:flex; align-items:center; gap:12px; }
-.brand__mark{
-  width:26px; height:36px; color:var(--gold); flex:none;
-  filter:drop-shadow(0 0 10px rgba(200,155,60,.45));
-  transition:transform .4s var(--ease);
+.brand__logo{
+  height:56px;
+  width:auto;
+  display:block;
+  filter:drop-shadow(0 4px 14px rgba(0,0,0,.7)) drop-shadow(0 0 18px rgba(200,155,60,.22));
+  transition:height .45s var(--ease), transform .4s var(--ease), filter .4s var(--ease);
 }
-.brand__mark svg{ width:100%; height:100%; }
-.brand:hover .brand__mark{ transform:translateY(-2px) scale(1.06); }
-.brand__text{ display:flex; flex-direction:column; line-height:1; }
-.brand__text strong{
-  font-family:var(--f-title); font-size:17px; font-weight:800;
-  letter-spacing:.14em; color:#fff;
-}
-.brand__text em{
-  font-style:normal; font-family:var(--f-sub);
-  font-size:9.5px; letter-spacing:.42em; color:var(--gold); margin-top:4px;
+.header.is-stuck .brand__logo{ height:46px; }
+.brand:hover .brand__logo{
+  transform:translateY(-2px) scale(1.03);
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,.75)) drop-shadow(0 0 26px rgba(200,155,60,.45));
 }
 
 /* Nav desktop */
@@ -626,6 +540,10 @@ p:last-child{ margin-bottom:0; }
 /* ============================================================
    08. HERO (DOBRA 1)
    ============================================================ */
+/* Força da imagem de fundo do Hero — 1 = cheia, 0 = invisível.
+   Diminua este número para deixar a arte mais fraca. */
+:root{ --hero-img: .62; }
+
 .hero{
   position:relative;
   min-height:100svh;
@@ -635,23 +553,56 @@ p:last-child{ margin-bottom:0; }
   isolation:isolate;
 }
 
+/* Camada pintada por gradientes: custo zero de rede, aparece no 1º frame.
+   Reproduz o clima da arte (céu escuro, brasa à esquerda, figura à direita)
+   para que o Hero nunca fique preto enquanto a foto baixa. */
+/* ============================================================
+   ARTE DO HERO — uma URL por tamanho de tela
+   ------------------------------------------------------------
+   As imagens passam por um conversor que entrega WebP redimensionado.
+   Para hospedar a versão comprimida no seu próprio servidor depois,
+   basta trocar as três URLs abaixo pelos seus arquivos.
+   ============================================================ */
+.hero__bg{ --img:url('https://wsrv.nl/?url=desenvolvedor.worksmidia.com.br/news/ChatGPT%20Image%206%20de%20ago.%20de%202026%2C%2013_54_59.png&w=1100&q=70&output=webp&we'); }                                   /* celular  */
+@media (min-width:701px){  .hero__bg{ --img:url('https://wsrv.nl/?url=desenvolvedor.worksmidia.com.br/news/ChatGPT%20Image%206%20de%20ago.%20de%202026%2C%2013_54_59.png&w=1600&q=70&output=webp&we'); } }    /* tablet   */
+@media (min-width:1400px){ .hero__bg{ --img:url('https://wsrv.nl/?url=desenvolvedor.worksmidia.com.br/news/ChatGPT%20Image%206%20de%20ago.%20de%202026%2C%2013_54_59.png&w=2200&q=70&output=webp&we'); } }    /* desktop  */
+
+.hero__lqip{
+  position:absolute; inset:0;
+  z-index:-5;
+  background:
+    radial-gradient(34% 48% at 74% 44%, rgba(104,92,76,.50), transparent 72%),
+    radial-gradient(28% 32% at 20% 64%, rgba(198,106,32,.38), transparent 74%),
+    radial-gradient(64% 42% at 50% 6%,  rgba(60,64,72,.50), transparent 76%),
+    linear-gradient(180deg,#1b1e24 0%,#14161b 42%,#0d0f13 70%,#08090c 100%);
+}
+
 .hero__bg{
-  position:absolute; inset:-12% -6%;
+  position:absolute; inset:-6% -4%;
   z-index:-4;
-  transform:scale(1.08);
+  background:none;
+  background-image:var(--img);
+  background-size:cover;
+  background-position:center 26%;
+  background-repeat:no-repeat;
+  opacity:0;
+  transition:opacity 1.1s var(--ease);
+  transform:scale(1.03);
   animation:heroDrift 26s ease-in-out infinite alternate;
   will-change:transform;
 }
+.hero__bg.is-ready{ opacity:var(--hero-img); }
 @keyframes heroDrift{
-  0%{ transform:scale(1.08) translate3d(0,0,0); }
-  100%{ transform:scale(1.16) translate3d(-1.6%,-1.2%,0); }
+  0%{ transform:scale(1.03) translate3d(0,0,0); }
+  100%{ transform:scale(1.08) translate3d(-1%,-.8%,0); }
 }
 
 .hero__overlay{
   position:absolute; inset:0; z-index:-2;
   background:
-    linear-gradient(180deg, rgba(9,9,9,.86) 0%, rgba(9,9,9,.55) 30%, rgba(9,9,9,.72) 68%, #0B0B0B 100%),
-    radial-gradient(90% 70% at 50% 45%, transparent 30%, rgba(0,0,0,.72) 100%);
+    radial-gradient(56% 44% at 50% 46%, rgba(0,0,0,.42) 0%, rgba(0,0,0,.22) 58%, transparent 80%),
+    linear-gradient(180deg, rgba(9,9,9,.58) 0%, rgba(9,9,9,.20) 28%, rgba(9,9,9,.34) 60%, rgba(11,11,11,.86) 92%, #0B0B0B 100%),
+    radial-gradient(105% 85% at 50% 50%, transparent 46%, rgba(0,0,0,.62) 100%);
 }
 
 /* Neblina animada */
@@ -665,7 +616,7 @@ p:last-child{ margin-bottom:0; }
     radial-gradient(closest-side at 20% 60%, rgba(190,180,165,.13), transparent 70%),
     radial-gradient(closest-side at 55% 75%, rgba(210,200,185,.10), transparent 70%),
     radial-gradient(closest-side at 82% 55%, rgba(170,160,150,.11), transparent 70%);
-  filter:blur(28px);
+  filter:blur(18px);
   animation:mistDrift 34s linear infinite;
   will-change:transform;
 }
@@ -702,6 +653,16 @@ p:last-child{ margin-bottom:0; }
 .hero__shield--r{ width:min(30vw,380px); aspect-ratio:1; right:-8vw; bottom:8%; color:rgba(200,155,60,.08); }
 
 .hero__content{ text-align:center; max-width:1240px; }
+
+/* Entrada do Hero sem depender do JavaScript: começa na primeira pintura */
+.hero-in{
+  animation:heroIn .95s var(--ease-out) both;
+  animation-delay:var(--d,0ms);
+}
+@keyframes heroIn{
+  from{ opacity:0; transform:translate3d(0,34px,0); }
+  to{   opacity:1; transform:none; }
+}
 
 .hero__title{
   font-size:clamp(36px,5.3vw,78px);
@@ -852,7 +813,7 @@ p:last-child{ margin-bottom:0; }
 .frame__nail--br{ bottom:9px; right:9px; }
 
 .frame__caption{
-  margin-top:14px;
+  margin:14px 0 0;
   font-family:var(--f-sub);
   font-style:italic;
   font-size:14px;
@@ -1395,7 +1356,7 @@ p:last-child{ margin-bottom:0; }
   padding-bottom:44px;
   border-bottom:1px solid rgba(255,255,255,.06);
 }
-.brand--footer .brand__mark{ width:30px; height:42px; }
+.brand--footer .brand__logo{ height:72px; }
 .footer__tag{
   margin-top:18px;
   font-family:var(--f-sub);
@@ -1433,7 +1394,17 @@ p:last-child{ margin-bottom:0; }
   line-height:1.9;
 }
 
-.social{ display:flex; gap:12px; margin-top:20px; }
+.footer__map{ margin:16px 0 0; }
+.footer__map a{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:12px; font-weight:600;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--gold);
+}
+.footer__map svg{ width:16px; height:16px; }
+.footer__map a::after{ background:var(--gold); }
+
+.social{ display:flex; gap:12px; margin-top:22px; }
 .social a{
   width:42px; height:42px;
   display:grid; place-items:center;
@@ -1482,7 +1453,11 @@ p:last-child{ margin-bottom:0; }
 /* ============================================================
    18. ANIMAÇÕES DE SCROLL (REVEAL)
    ============================================================ */
-.reveal{
+/* Sem JavaScript (ou antes dele rodar) tudo permanece visível.
+   O estado inicial invisível só é aplicado quando há JS para revelar. */
+.reveal{ opacity:1; }
+
+.js .reveal{
   opacity:0;
   transform:translate3d(0,42px,0) scale(.985);
   filter:blur(6px);
@@ -1492,10 +1467,10 @@ p:last-child{ margin-bottom:0; }
     filter .9s var(--ease-out);
   will-change:opacity, transform;
 }
-.reveal--left{ transform:translate3d(-46px,20px,0) scale(.985); }
-.reveal--right{ transform:translate3d(46px,20px,0) scale(.985); }
+html.js .reveal--left{ transform:translate3d(-46px,20px,0) scale(.985); }
+html.js .reveal--right{ transform:translate3d(46px,20px,0) scale(.985); }
 
-.reveal.is-visible{
+.js .reveal.is-visible{
   opacity:1;
   transform:none;
   filter:blur(0);
@@ -1546,6 +1521,9 @@ p:last-child{ margin-bottom:0; }
   .nav__list a{ font-size:17px; letter-spacing:.2em; }
   .nav__cta{ display:inline-flex; }
 
+  /* Sem deslocamento horizontal nos reveals: evitava estouro lateral no mobile */
+  .reveal--left, .reveal--right{ transform:translate3d(0,42px,0) scale(.985); }
+
   .split{ grid-template-columns:1fr; gap:44px; }
   .split--reverse .split__media{ order:0; }
   .split__text{ max-width:none; }
@@ -1554,9 +1532,14 @@ p:last-child{ margin-bottom:0; }
   .duo{ grid-template-columns:1fr; }
   .timeline__list{ grid-template-columns:repeat(2,1fr); }
 
+  .brand__logo{ height:46px; }
+  .header.is-stuck .brand__logo{ height:40px; }
+
   .hero{ padding:132px 0 110px; min-height:92svh; }
+  .hero__bg{ background-position:66% 24%; }
   .hero__shield--l{ left:-24vw; opacity:.7; }
   .hero__shield--r{ right:-22vw; opacity:.7; }
+
 
   .footer__grid{ grid-template-columns:1fr 1fr; gap:34px; }
 }
@@ -1566,15 +1549,37 @@ p:last-child{ margin-bottom:0; }
   .container{ width:calc(100% - 36px); }
   body{ line-height:1.7; }
 
-  .hero{ text-align:center; padding:120px 0 132px; }
-  .hero__title{ font-size:clamp(32px,10vw,46px); }
+  /* Hero no celular: hierarquia mais clara e espaçamento respirado */
+  .hero{ text-align:center; padding:110px 0 118px; }
+  .hero .eyebrow{
+    font-size:9.5px; letter-spacing:.17em; gap:10px;
+    margin-bottom:26px; line-height:1.6;
+  }
+  .hero .eyebrow i{ display:none; }
+  .hero__title{
+    font-size:clamp(29px,8.2vw,40px);
+    line-height:1.1;
+    letter-spacing:.005em;
+    margin-bottom:24px;
+  }
+  .hero__subtitle{
+    font-size:clamp(17px,4.8vw,21px);
+    line-height:1.45;
+    margin-bottom:30px;
+  }
+  .hero__text{
+    font-size:14.5px;
+    line-height:1.85;
+    margin:0 auto 34px;
+  }
   .hero__text br{ display:none; }
+  .scroll-cue__label{ display:none; }
   .btn--lg{ --btn-h:58px; padding:0 26px; font-size:12px; width:100%; }
   .btn--xl{ --btn-h:64px; padding:0 26px; font-size:12.5px; width:100%; }
   .hero__actions{ width:100%; }
   .hero__actions .btn{ width:100%; }
-  .scroll-cue{ bottom:88px; }
-  .scroll-cue__line{ height:36px; }
+  .scroll-cue{ bottom:28px; gap:8px; }
+  .scroll-cue__line{ height:30px; }
 
   .cards{ grid-template-columns:1fr; gap:18px; }
   .card{ padding:32px 26px; }
@@ -1611,6 +1616,36 @@ p:last-child{ margin-bottom:0; }
 
 
 /* ============================================================
+   19b. PERFIL LEVE PARA CELULAR
+   ------------------------------------------------------------
+   Efeitos caros de GPU custam caro em aparelho modesto e aparecem
+   como travamento na rolagem. Aqui eles saem sem mudar a estética.
+   ============================================================ */
+@media (max-width:900px){
+  /* granulação: repinta a tela inteira várias vezes por segundo */
+  .grain{ display:none; }
+
+  /* backdrop-filter é o efeito mais caro do navegador — troca por cor sólida */
+  .header.is-stuck{
+    background:rgba(9,9,9,.95);
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+  }
+  .nav{ backdrop-filter:none; -webkit-backdrop-filter:none; background:rgba(9,9,9,.985); }
+  .stat, .chip{ backdrop-filter:none; -webkit-backdrop-filter:none; }
+
+  /* neblina com menos blur */
+  .hero__mist, .final__mist{ filter:blur(12px); opacity:.7; }
+  .hero__mist--2{ display:none; }
+
+  /* sombras projetadas de texto pesam em GPU fraca */
+  .title, .hero__title, .final__title, .stat__num{ filter:none; }
+
+  /* luz volumétrica que acompanha a rolagem */
+  .light-follow{ display:none; }
+}
+
+/* ============================================================
    20. ACESSIBILIDADE / MOVIMENTO REDUZIDO
    ============================================================ */
 @media (prefers-reduced-motion:reduce){
@@ -1620,12 +1655,12 @@ p:last-child{ margin-bottom:0; }
     transition-duration:.001ms !important;
     scroll-behavior:auto !important;
   }
-  .reveal{ opacity:1 !important; transform:none !important; filter:none !important; }
+  .reveal, .hero-in{ opacity:1 !important; transform:none !important; filter:none !important; animation:none !important; }
   .grain{ display:none; }
   .hero__bg{ animation:none; }
 }
 
 @media print{
-  .loader,.grain,.vignette-global,.cursor,.cursor-dot,.sticky-cta,.embers{ display:none !important; }
+  .grain,.vignette-global,.cursor,.cursor-dot,.sticky-cta,.embers{ display:none !important; }
   body{ background:#fff; color:#000; }
 }

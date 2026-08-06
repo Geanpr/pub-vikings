@@ -4,7 +4,6 @@
    ----------------------------------------------------------------------------
    MÓDULOS
    01. Utilitários
-   02. Loader
    03. Cursor personalizado (machado)
    04. Header + navegação mobile + link ativo
    05. Parallax e luz volumétrica (rAF único)
@@ -35,69 +34,6 @@
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
   }
-
-
-  /* ==========================================================
-     02. LOADER — runa → logo → chamado → fade
-     ========================================================== */
-  const Loader = (function () {
-    const el  = $('#loader');
-    const bar = $('.loader__bar span');
-    let progress = 0;
-    let finished = false;
-
-    function step(cls, delay) {
-      setTimeout(() => el && el.classList.add(cls), delay);
-    }
-
-    function fillBar() {
-      if (finished) return;
-      progress = Math.min(progress + Math.random() * 9 + 3, 96);
-      if (bar) bar.style.width = progress + '%';
-      setTimeout(fillBar, 130);
-    }
-
-    function finish() {
-      if (finished || !el) return;
-      finished = true;
-      if (bar) bar.style.width = '100%';
-
-      setTimeout(() => {
-        el.classList.add('is-done');
-        document.body.classList.remove('is-loading');
-        document.dispatchEvent(new CustomEvent('vk:loaded'));
-        setTimeout(() => { el.style.display = 'none'; }, 1100);
-      }, 420);
-    }
-
-    function init() {
-      if (!el) { document.body.classList.remove('is-loading'); return; }
-
-      if (REDUCED) {
-        el.classList.add('is-step1', 'is-step2', 'is-step3');
-        setTimeout(finish, 300);
-        return;
-      }
-
-      step('is-step1', 120);   // runa desenhando
-      step('is-step2', 1250);  // logo St. John's
-      step('is-step3', 2250);  // "Os Portões de Kattegat..."
-      fillBar();
-
-      const minTime = 3600;
-      const start = Date.now();
-
-      window.addEventListener('load', () => {
-        const remaining = Math.max(0, minTime - (Date.now() - start));
-        setTimeout(finish, remaining);
-      });
-
-      // Failsafe: nunca prender o usuário
-      setTimeout(finish, 7000);
-    }
-
-    return { init: init };
-  })();
 
 
   /* ==========================================================
@@ -571,7 +507,16 @@
     function init() {
       if (REDUCED) return;
 
-      const defs = [
+      // Aparelho modesto / tela pequena: menos partículas e sem shadowBlur,
+      // que é de longe a operação mais cara do canvas.
+      const LIGHT = window.innerWidth < 900 ||
+                    (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
+                    (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
+
+      const defs = LIGHT ? [
+        { id: 'embersHero',  opts: { count: 18, speed: 1,    size: 2.2, glow: false } },
+        { id: 'embersFinal', opts: { count: 22, speed: 1.15, size: 2.4, glow: false } }
+      ] : [
         { id: 'embersHero',  opts: { count: 54, speed: 1,   size: 2.4 } },
         { id: 'embersCards', opts: { count: 26, speed: .75, size: 1.8, glow: false } },
         { id: 'embersFinal', opts: { count: 72, speed: 1.25, size: 2.8 } }
@@ -640,6 +585,34 @@
       const y = $('#year');
       if (y) y.textContent = new Date().getFullYear();
 
+      // Hero: revela a foto só quando ela termina de baixar (fade sobre o placeholder)
+      const heroBg = $('.hero__bg');
+      if (heroBg) {
+        const reveal = () => heroBg.classList.add('is-ready');
+        const src = (getComputedStyle(heroBg).backgroundImage || '').match(/url\(["']?(.*?)["']?\)/);
+        if (src && src[1] && src[1] !== 'none') {
+          const probe = new Image();
+          probe.onload = reveal;
+          probe.onerror = () => {
+            // Conversor indisponível: cai para a imagem original do servidor
+            const fb = heroBg.dataset.fallback;
+            if (fb && !heroBg.dataset.fellBack) {
+              heroBg.dataset.fellBack = '1';
+              heroBg.style.setProperty('--img', "url('" + fb + "')");
+              const again = new Image();
+              again.onload = reveal;
+              again.onerror = reveal;
+              again.src = fb;
+            } else { reveal(); }
+          };
+          probe.src = src[1];
+          if (probe.complete) reveal();
+          setTimeout(reveal, 8000); // rede ruim: não deixa o Hero sem imagem para sempre
+        } else {
+          reveal();
+        }
+      }
+
       // Placeholder elegante quando a imagem real ainda não existe
       $$('img[data-img]').forEach(img => {
         img.addEventListener('error', () => img.classList.add('is-broken'));
@@ -669,8 +642,6 @@
   /* ==========================================================
      BOOT
      ========================================================== */
-  Loader.init();
-
   onReady(function () {
     Cursor.init();
     Header.init();

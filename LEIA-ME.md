@@ -1,74 +1,122 @@
 # VIKINGS NIGHT — St. John's Irish Pub
-Landing Page cinematográfica · HTML5 + CSS3 + JavaScript Vanilla (zero dependências)
+Landing Page de venda de ingressos · HTML5 + CSS3 + JavaScript puro, sem dependências.
 
-## Arquivos
+---
+
+## Arquivos deste pacote
 
 ```
-index.html      → estrutura, SEO, Open Graph e Schema.org (MusicEvent)
-style.css       → identidade visual completa (20 blocos comentados)
-script.js       → 12 módulos comentados (loader, cursor, parallax, brasas, etc.)
-assets/img/     → coloque aqui as imagens reais
-preview-vikings-night.html → versão única (CSS+JS embutidos) só para visualizar
+index.html      → estrutura, SEO, Open Graph e Schema.org do evento
+style.css       → toda a identidade visual (blocos numerados e comentados)
+script.js       → 11 módulos comentados (header, parallax, brasas, FAQ, contadores…)
+assets/img/     → pasta reservada; hoje as imagens vêm por URL
+LEIA-ME.md      → este arquivo (pode ficar no repositório, não afeta o site)
 ```
 
-Para publicar, suba `index.html`, `style.css`, `script.js` e a pasta `assets/`.
-O arquivo de preview não é necessário no servidor.
+Suba os quatro no GitHub, na **raiz** do repositório. O Vercel detecta o
+`index.html` sozinho — não precisa configurar build nem framework.
 
-## Imagens a substituir
+> O arquivo `preview-vikings-night.html`, se você o tiver, é apenas uma cópia com
+> tudo embutido para visualizar offline. **Não suba** — se ele for para a raiz,
+> pode confundir na hora de identificar a página principal.
 
-Todos os locais já funcionam sem imagem (há textura procedural + marca d'água de runa).
-Basta colocar o arquivo com o nome abaixo dentro de `assets/img/`:
+---
 
-| Arquivo | Dimensão | Conteúdo ideal |
+## O que ainda falta preencher
+
+Só restaram dois marcadores no `index.html`. Busque pelo texto entre colchetes:
+
+| Marcador | O que é | Onde aparece |
 |---|---|---|
-| `hero-longhouse.jpg` | 2560×1440 | Longhouse Viking à noite, tochas acesas, escudos, névoa baixa |
-| `celebracao-viking.jpg` | 1000×1250 | Interior: mesas longas, chifres de hidromel, público celebrando |
-| `pub-panoramica.jpg` | 2560×1400 | Foto panorâmica real do St. John's com palcos e público |
-| `sobre-stjohns.jpg` | 1200×900 | Fachada ou salão principal em noite de show |
-| `chamado-final.jpg` | 2560×1600 | Cena épica: drakkar, fogueira, névoa sobre o fiorde |
-| `og-vikings-night.jpg` | 1200×630 | Banner de compartilhamento (WhatsApp / Facebook / Instagram) |
-| `favicon.png` | 64×64 | Ícone da aba |
-| `logo-stjohns.svg` | altura 48px | Logo oficial (opcional — hoje há logo tipográfico + runa) |
+| `[LINK-DA-PLATAFORMA-DE-INGRESSOS]` | URL do checkout | Botão "Vamos Explorar", na dobra final |
+| `[HORÁRIO]` | Hora de abertura das portas | Primeira pergunta do FAQ |
 
-Dica de performance: exporte em **WebP** a 75–80% de qualidade e troque a extensão
-no `index.html` (`.jpg` → `.webp`).
+Vale conferir também, no bloco `application/ld+json` do `<head>`:
+`"price": "0.00"` — troque pelo valor do lote atual para o Google exibir o preço.
 
-## Dados a preencher (busque por `[` no index.html)
+**Fazer todos os botões irem direto ao checkout:** substitua as 7 ocorrências de
+`href="#ingressos"` pela URL da plataforma.
 
-- `[LINK-DA-PLATAFORMA-DE-INGRESSOS]` — checkout do botão final "Vamos Explorar"
-- `[HORÁRIO]` — horário de abertura das portas (FAQ)
-- `[TELEFONE]`, `[E-MAIL]`, `[NUMERO]` do WhatsApp — rodapé
-- `[RUA E NÚMERO]`, `[BAIRRO]`, `[CIDADE]`, `[UF]`, `[CEP]` — rodapé e Schema.org
-- `[LINK-INSTAGRAM]`, `[LINK-FACEBOOK]`, `[LINK-YOUTUBE]` — redes sociais
-- No bloco `application/ld+json`: endereço, horário de início/fim e o `price` do lote
+Já preenchidos: telefone com link de WhatsApp, e-mail, endereço completo do Tatuapé
+(no rodapé e no Schema.org), Instagram, Facebook e YouTube.
 
-Os demais botões (`#ingressos`) levam à Dobra 8. Se quiser que todos apontem
-direto para o checkout, troque `href="#ingressos"` pela URL da plataforma.
+---
 
-## O que já está pronto
+## Como as imagens funcionam hoje
 
-**Cinematografia** — loader com runa Algiz → logo → "Os Portões de Kattegat Estão se
-Abrindo..."; cursor de machado com onda metálica no clique; granulação de filme;
-vignette global; neblina animada; brasas em canvas (3 densidades); luz volumétrica
-que acompanha a rolagem; parallax multicamada; animação de câmera lenta no Hero.
+As imagens ficam hospedadas em `desenvolvedor.worksmidia.com.br` e passam por um
+conversor que entrega **WebP redimensionado**, para o celular não baixar a versão
+de desktop. Nenhuma imagem é servida no formato original.
 
-**Conversão** — CTA em todas as dobras, header fixo com botão dourado, barra fixa de
-compra no mobile (aparece após o Hero e some na dobra final).
+| Onde | Tamanho entregue | Formato |
+|---|---|---|
+| Logo (header e rodapé) | 400px | WebP |
+| Arte do Hero | 1100 / 1600 / 2200px conforme a tela | WebP |
+| Dobra 2 — Celebração Viking | 1000px | WebP |
+| Sobre o St. John's | 1200px | WebP |
+| Compartilhamento (WhatsApp/Facebook) | 1200px | JPG |
 
-**Performance** — canvas pausa fora da viewport e quando a aba perde o foco; um único
-loop de `requestAnimationFrame` para todo o scroll; `IntersectionObserver` para
-reveals, contadores e timeline; `loading="lazy"` nas imagens; zero bibliotecas.
+**As três URLs do Hero ficam no `style.css`**, no bloco comentado `ARTE DO HERO`.
+As demais ficam no `index.html`, cada uma na sua tag `<img>`.
 
-**Acessibilidade** — navegação por teclado (inclusive setas ↑↓ no FAQ), `aria-expanded`,
-`role="region"`, skip link, foco visível, contraste AA, `prefers-reduced-motion`
-desliga todas as animações.
+Se um dia quiser hospedar os arquivos comprimidos no próprio servidor e parar de
+depender do conversor, é só trocar essas URLs pelos seus arquivos. O Hero tem uma
+proteção extra: se o conversor não responder, o JavaScript volta sozinho para a
+imagem original (o endereço está no atributo `data-fallback`).
 
-**Responsivo** — ultrawide (≥1800px), desktop, notebook (≤1180px), tablet (≤900px,
-menu hambúrguer em tela cheia) e celular (≤640px, timeline vertical, cards em coluna).
+Para regular a força da arte do Hero, há uma variável no topo do `style.css`:
+
+```css
+:root{ --hero-img: .62; }   /* 1 = imagem cheia · 0 = invisível */
+```
+
+---
+
+## O que está implementado
+
+**Visual** — paleta preto/madeira/bronze/dourado, títulos em Cinzel com efeito de
+pedra gravada, cards em placa de metal com pregos e brilho 3D no hover, timeline
+que acende conforme a rolagem, contadores animados, FAQ acordeão, cursor de machado
+no desktop, brasas em canvas, neblina, vinheta e granulação de cinema.
+
+**Conversão** — CTA em todas as dobras, header fixo com botão dourado e barra fixa
+de compra no celular (aparece depois do Hero e some na dobra final).
+
+**Velocidade** — a primeira pintura não depende de JavaScript nem das fontes: o Hero
+anima em CSS puro e o conteúdo nasce visível. Fontes carregam sem bloquear a tela,
+imagens vão em WebP redimensionado com `preload` da arte principal, o canvas pausa
+fora da tela e um único `requestAnimationFrame` cuida de toda a rolagem.
+Medido em ambiente controlado: primeira pintura em ~150 ms, 60 FPS na rolagem.
+
+**Celular** — perfil leve que desliga granulação, `backdrop-filter` e luz volumétrica,
+reduz as brasas e o blur. Layout testado em 360, 390 e 414px sem estouro lateral.
+
+**Acessibilidade** — navegação por teclado (setas ↑↓ no FAQ), `aria-expanded`,
+skip link, foco visível, contraste AA e `prefers-reduced-motion` desligando as
+animações.
+
+---
+
+## Editar depois
+
+**Pelo navegador (mais rápido):** no GitHub, abra o arquivo → ícone de lápis →
+`Ctrl+F` para achar o trecho → **Commit changes**. O Vercel republica em ~40s.
+
+**Na sua máquina:** VS Code → `Ctrl+Shift+P` → `Git: Clone` → cole a URL do
+repositório. Instale a extensão **Live Server**, clique com o botão direito no
+`index.html` → *Open with Live Server* para ver as mudanças ao salvar. Para publicar:
+aba **Source Control** → mensagem → **Commit** → **Sync Changes**.
+
+As seções estão separadas por comentários grandes no `index.html`
+(`<!-- DOBRA 3 — OS SETE PILARES -->`, `<!-- DOBRA 7 — FAQ -->` e assim por diante).
+
+**Se algo quebrar:** no GitHub, aba **Commits** → abra o commit ruim → **Revert**.
+Nenhuma versão se perde.
+
+---
 
 ## Copy
 
-Os textos do Hero, os títulos das dobras, os nomes dos 7 cards, as 5 etapas da timeline
-e todos os textos de botão foram usados exatamente como no briefing. Os textos de apoio
-das Dobras 2, 5, 6, 8 e as 7 perguntas do FAQ foram redigidos no mesmo tom — troque à
-vontade, estão todos em blocos comentados no `index.html`.
+Hero, títulos das dobras, nomes dos 7 cards, as 5 etapas da timeline e todos os
+textos de botão seguem exatamente o briefing. Os textos de apoio das Dobras 2, 5, 6
+e 8 e as 7 perguntas do FAQ foram redigidos no mesmo tom — troque à vontade.

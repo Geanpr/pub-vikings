@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="no-js">
 <head>
 <meta charset="UTF-8">
+<script>document.documentElement.className='js';</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0B0B0B">
+<meta name="color-scheme" content="dark">
 
 <!-- ============================================================
      SEO
@@ -24,27 +26,36 @@
 <meta property="og:title" content="Vikings Night · Os Portões de Kattegat Estão Abertos">
 <meta property="og:description" content="28 de Agosto. Uma noite épica inspirada na série Vikings. Rock n roll, drinks temáticos e imersão total no St. John's Irish Pub.">
 <meta property="og:url" content="https://www.stjohnspub.com.br/vikings-night">
-<!-- IMAGEM OG: 1200x630px — Banner cinematográfico da Longhouse com tochas acesas e o logo do St. John's -->
-<meta property="og:image" content="assets/img/og-vikings-night.jpg">
+<!-- IMAGEM OG: o ideal é 1200x630px. Trocar quando houver a arte oficial do evento. -->
+<meta property="og:image" content="https://wsrv.nl/?url=desenvolvedor.worksmidia.com.br/news/Frente%20PUB.jpg&amp;w=1200&amp;q=80&amp;output=jpg&amp;we">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Vikings Night · St. John's Irish Pub">
 <meta name="twitter:description" content="28 de Agosto. O pub vira a Longhouse de Ragnar. Ingressos antecipados abertos.">
-<meta name="twitter:image" content="assets/img/og-vikings-night.jpg">
+<meta name="twitter:image" content="https://wsrv.nl/?url=desenvolvedor.worksmidia.com.br/news/Frente%20PUB.jpg&amp;w=1200&amp;q=80&amp;output=jpg&amp;we">
 
 <!-- ============================================================
      ÍCONES
      ============================================================ -->
-<link rel="icon" href="assets/img/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="icon" href="https://wsrv.nl/?url=desenvolvedor.worksmidia.com.br/news/Logo%20st%20Johns%20color.png&amp;w=64&amp;q=90&amp;output=png&amp;we" type="image/png">
+<link rel="apple-touch-icon" href="https://wsrv.nl/?url=desenvolvedor.worksmidia.com.br/news/Logo%20st%20Johns%20color.png&amp;w=180&amp;q=90&amp;output=png&amp;we">
 
 <!-- ============================================================
      FONTES — Cinzel (títulos) · Cormorant Garamond (subtítulos) · Inter (texto)
      ============================================================ -->
+<!-- Prioriza o download da arte do Hero (LCP). Cada tela baixa só o seu tamanho. -->
+<link rel="preconnect" href="https://wsrv.nl" crossorigin>
+<link rel="preconnect" href="https://desenvolvedor.worksmidia.com.br" crossorigin>
+<link rel="preload" as="image" fetchpriority="high" media="(max-width: 700px)"  href="https://wsrv.nl/?url=desenvolvedor.worksmidia.com.br/news/ChatGPT%20Image%206%20de%20ago.%20de%202026%2C%2013_54_59.png&amp;w=1100&amp;q=70&amp;output=webp&amp;we">
+<link rel="preload" as="image" fetchpriority="high" media="(min-width: 701px) and (max-width: 1399px)" href="https://wsrv.nl/?url=desenvolvedor.worksmidia.com.br/news/ChatGPT%20Image%206%20de%20ago.%20de%202026%2C%2013_54_59.png&amp;w=1600&amp;q=70&amp;output=webp&amp;we">
+<link rel="preload" as="image" fetchpriority="high" media="(min-width: 1400px)" href="https://wsrv.nl/?url=desenvolvedor.worksmidia.com.br/news/ChatGPT%20Image%206%20de%20ago.%20de%202026%2C%2013_54_59.png&amp;w=2200&amp;q=70&amp;output=webp&amp;we">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@1,400&family=Inter:wght@300;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@1,400&family=Inter:wght@300;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@1,400&family=Inter:wght@300;500;600;700&display=swap"></noscript>
 
 <link rel="stylesheet" href="style.css">
 
@@ -61,23 +72,31 @@
   "endDate": "2026-08-29T04:00:00-03:00",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-  "image": ["assets/img/og-vikings-night.jpg"],
+  "image": ["https://wsrv.nl/?url=desenvolvedor.worksmidia.com.br/news/Frente%20PUB.jpg&w=1200&q=80&output=jpg&we"],
   "location": {
     "@type": "Place",
     "name": "St. John's Irish Pub",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "[ENDEREÇO DO PUB]",
-      "addressLocality": "[CIDADE]",
-      "addressRegion": "[UF]",
-      "postalCode": "[CEP]",
+      "streetAddress": "Rua Itapura, 1308",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP",
+      "postalCode": "03310-000",
       "addressCountry": "BR"
-    }
+    },
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=Rua+Itapura+1308+Tatuap%C3%A9+S%C3%A3o+Paulo+SP+03310-000"
   },
   "organizer": {
     "@type": "Organization",
     "name": "St. John's Irish Pub",
-    "url": "https://www.stjohnspub.com.br"
+    "url": "https://www.stjohnspub.com.br",
+    "telephone": "+551122950677",
+    "email": "contato@stjohns.com.br",
+    "sameAs": [
+      "https://www.instagram.com/stjohnspub/",
+      "https://www.facebook.com/stjohnspub",
+      "https://www.youtube.com/@StJohnsIrishPubTatuape/videos"
+    ]
   },
   "performer": { "@type": "PerformingGroup", "name": "Bandas de Rock ao Vivo" },
   "offers": {
@@ -93,25 +112,7 @@
 </script>
 </head>
 
-<body class="is-loading">
-
-<!-- ============================================================
-     LOADER — RUNA · LOGO · CHAMADO
-     ============================================================ -->
-<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Carregando a experiência Vikings Night">
-  <div class="loader__inner">
-    <svg class="loader__rune" viewBox="0 0 100 140" aria-hidden="true">
-      <!-- Runa Algiz — proteção e chamado dos deuses -->
-      <path d="M50 132 L50 20 M50 20 L18 60 M50 20 L82 60" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <div class="loader__logo">
-      <span class="loader__logo-top">ST. JOHN'S</span>
-      <span class="loader__logo-bottom">IRISH PUB</span>
-    </div>
-    <p class="loader__text">Os Portões de Kattegat Estão se Abrindo...</p>
-    <div class="loader__bar"><span></span></div>
-  </div>
-</div>
+<body>
 
 <!-- Cursor personalizado (machado) -->
 <div class="cursor" id="cursor" aria-hidden="true">
@@ -134,14 +135,8 @@
 <header class="header" id="header">
   <div class="container header__inner">
     <a class="brand" href="#hero" aria-label="St. John's Irish Pub — início">
-      <!-- LOGO: substituir por assets/img/logo-stjohns.svg (altura ideal 48px, versão clara) -->
-      <span class="brand__mark" aria-hidden="true">
-        <svg viewBox="0 0 100 140"><path d="M50 132 L50 20 M50 20 L18 60 M50 20 L82 60" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/></svg>
-      </span>
-      <span class="brand__text">
-        <strong>ST. JOHN'S</strong>
-        <em>IRISH PUB</em>
-      </span>
+      <!-- LOGO OFICIAL — altura controlada pelo CSS (.brand__logo) -->
+      <img class="brand__logo" src="https://wsrv.nl/?url=desenvolvedor.worksmidia.com.br/news/Logo%20st%20Johns%20color.png&amp;w=400&amp;q=82&amp;output=webp&amp;we" decoding="async" fetchpriority="high" alt="St. John's Irish Pub" width="220" height="88">
     </a>
 
     <nav class="nav" id="nav" aria-label="Navegação principal">
@@ -169,15 +164,17 @@
      DOBRA 1 — HERO
      ============================================================ -->
 <section class="hero" id="hero">
-  <!-- IMAGEM DE FUNDO: 2560x1440px — Banner cinematográfico de uma Longhouse Viking à noite,
-       tochas acesas, escudos nas paredes, névoa baixa. Substituir em assets/img/hero-longhouse.jpg -->
-  <div class="hero__bg" data-parallax="0.25" style="--img:url('assets/img/hero-longhouse.jpg')" role="img" aria-label="Longhouse Viking iluminada por tochas durante a noite"></div>
+  <!-- Pré-visualização instantânea: pintada pelo CSS, aparece antes da foto chegar -->
+  <div class="hero__lqip" aria-hidden="true"></div>
+
+  <!-- IMAGEM DE FUNDO DO HERO — as URLs ficam no style.css, bloco "ARTE DO HERO" -->
+  <div class="hero__bg" data-parallax="0.25" data-fallback="https://desenvolvedor.worksmidia.com.br/news/ChatGPT%20Image%206%20de%20ago.%20de%202026,%2013_54_59.png" role="img" aria-label="Guerreiro viking com machado diante de um fiorde com drakkares"></div>
   <div class="hero__mist" aria-hidden="true"></div>
   <div class="hero__mist hero__mist--2" aria-hidden="true"></div>
   <div class="hero__overlay" aria-hidden="true"></div>
   <canvas class="embers" id="embersHero" aria-hidden="true"></canvas>
 
-  <!-- Escudos e machados decorativos em parallax -->
+  <!-- Escudos decorativos em parallax -->
   <div class="hero__shield hero__shield--l" data-parallax="0.12" aria-hidden="true">
     <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="60" cy="60" r="40" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="60" cy="60" r="10" fill="currentColor" opacity=".5"/><path d="M60 6v108M6 60h108M22 22l76 76M98 22l-76 76" stroke="currentColor" stroke-width="2"/></svg>
   </div>
@@ -185,25 +182,26 @@
     <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="60" cy="60" r="28" fill="none" stroke="currentColor" stroke-width="2"/><path d="M60 6v108M6 60h108" stroke="currentColor" stroke-width="2"/></svg>
   </div>
 
+
   <div class="container hero__content" data-parallax="-0.08">
-    <span class="eyebrow reveal" data-delay="0">
+    <span class="eyebrow hero-in" style="--d:0ms">
       <i aria-hidden="true"></i> 28 de Agosto · St. John's Irish Pub <i aria-hidden="true"></i>
     </span>
 
-    <h1 class="hero__title reveal" data-delay="80">
+    <h1 class="hero__title hero-in" style="--d:80ms">
       <span class="line">Os Portões de Kattegat</span>
       <span class="line">Estão Abertos</span>
     </h1>
 
-    <p class="hero__subtitle reveal" data-delay="180">O St. John's Convoca Você Para o Grande Salão</p>
+    <p class="hero__subtitle hero-in" style="--d:180ms">O St. John's Convoca Você Para o Grande Salão</p>
 
-    <p class="hero__text reveal" data-delay="260">
+    <p class="hero__text hero-in" style="--d:260ms">
       Esqueça as festas temáticas comuns.<br>
       No dia 28 de Agosto, nosso pub se transforma na verdadeira Longhouse de Ragnar Lothbrok.<br>
       Reúna seus guerreiros, adquira seu ingresso antecipado e garanta uma noite épica de muito rock n roll, drinks temáticos e uma imersão total digna de Valhalla.
     </p>
 
-    <div class="hero__actions reveal" data-delay="340">
+    <div class="hero__actions hero-in" style="--d:340ms">
       <a class="btn btn--gold btn--lg" href="#ingressos">Quero Garantir Meu Ingresso Antecipado</a>
     </div>
   </div>
@@ -250,15 +248,14 @@
 
     <div class="split__media reveal reveal--right" data-delay="160">
       <div class="frame frame--iron" data-parallax="0.06">
-        <!-- IMAGEM: 1000x1250px (retrato) — Interior da Longhouse: mesas longas de madeira,
-             chifres de hidromel, tochas e público celebrando. assets/img/celebracao-viking.jpg -->
-        <img src="assets/img/celebracao-viking.jpg" alt="Interior da Longhouse com mesas de madeira, tochas acesas e guerreiros celebrando" loading="lazy" width="1000" height="1250" data-img>
+        <!-- IMAGEM — Dobra 2: A Verdadeira Celebração Viking -->
+        <img src="https://wsrv.nl/?url=desenvolvedor.worksmidia.com.br/news/ChatGPT%20Image%206%20de%20ago.%20de%202026%2C%2011_50_35.png&amp;w=1000&amp;q=72&amp;output=webp&amp;we" width="1000" height="1250" decoding="async" alt="Celebração viking na Longhouse do St. John's, com tochas acesas e guerreiros brindando" loading="lazy" data-img>
         <span class="frame__nail frame__nail--tl" aria-hidden="true"></span>
         <span class="frame__nail frame__nail--tr" aria-hidden="true"></span>
         <span class="frame__nail frame__nail--bl" aria-hidden="true"></span>
         <span class="frame__nail frame__nail--br" aria-hidden="true"></span>
       </div>
-      <div class="frame__caption">Longhouse do St. John's · Noite de Batalha e Celebração</div>
+      <p class="frame__caption">Longhouse do St. John's · Noite de Batalha e Celebração</p>
     </div>
   </div>
 </section>
@@ -634,8 +631,8 @@
   <div class="container split split--reverse">
     <div class="split__media reveal reveal--left">
       <div class="frame frame--iron frame--wide" data-parallax="0.05">
-        <!-- IMAGEM: 1200x900px — Fachada ou salão principal do St. John's Irish Pub em noite de show -->
-        <img src="assets/img/sobre-stjohns.jpg" alt="Salão principal do St. John's Irish Pub durante um show de rock" loading="lazy" width="1200" height="900" data-img>
+        <!-- IMAGEM — Dobra 8: fachada do St. John's Irish Pub -->
+        <img src="https://wsrv.nl/?url=desenvolvedor.worksmidia.com.br/news/WhatsApp%20Image%202026-08-06%20at%2014.26.17.jpeg&amp;w=1200&amp;q=72&amp;output=webp&amp;we" width="1200" height="900" decoding="async" alt="Salão do St. John's Irish Pub" loading="lazy" data-img>
         <span class="frame__nail frame__nail--tl" aria-hidden="true"></span>
         <span class="frame__nail frame__nail--tr" aria-hidden="true"></span>
         <span class="frame__nail frame__nail--bl" aria-hidden="true"></span>
@@ -704,10 +701,7 @@
   <div class="container footer__grid">
     <div class="footer__brand">
       <a class="brand brand--footer" href="#hero" aria-label="St. John's Irish Pub">
-        <span class="brand__mark" aria-hidden="true">
-          <svg viewBox="0 0 100 140"><path d="M50 132 L50 20 M50 20 L18 60 M50 20 L82 60" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/></svg>
-        </span>
-        <span class="brand__text"><strong>ST. JOHN'S</strong><em>IRISH PUB</em></span>
+        <img class="brand__logo" src="https://wsrv.nl/?url=desenvolvedor.worksmidia.com.br/news/Logo%20st%20Johns%20color.png&amp;w=400&amp;q=82&amp;output=webp&amp;we" decoding="async" alt="St. John's Irish Pub" width="220" height="88" loading="lazy">
       </a>
       <p class="footer__tag">Rock ao vivo, chope gelado e noites que viram história.</p>
     </div>
@@ -726,30 +720,36 @@
     <div class="footer__col">
       <h4>Contato</h4>
       <ul>
-        <li><a href="tel:[TELEFONE]">[TELEFONE]</a></li>
-        <li><a href="mailto:[E-MAIL]">[E-MAIL]</a></li>
-        <li><a href="https://wa.me/[NUMERO]" rel="noopener">WhatsApp</a></li>
+        <li><a href="https://wa.me/551122950677?text=Ol%C3%A1%21%20Quero%20informa%C3%A7%C3%B5es%20sobre%20a%20Vikings%20Night." target="_blank" rel="noopener" aria-label="Falar no WhatsApp com o St. John's Irish Pub">(11) 2295-0677</a></li>
+        <li><a href="mailto:contato@stjohns.com.br">contato@stjohns.com.br</a></li>
+        <li><a href="https://wa.me/551122950677?text=Ol%C3%A1%21%20Quero%20reservar%20mesa%20para%20a%20Vikings%20Night." target="_blank" rel="noopener">Reservar mesa no WhatsApp</a></li>
+      </ul>
+      <ul class="social" aria-label="Redes sociais do St. John's Irish Pub">
+        <li><a href="https://www.instagram.com/stjohnspub/" target="_blank" rel="noopener" aria-label="Instagram do St. John's Irish Pub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/></svg>
+        </a></li>
+        <li><a href="https://www.facebook.com/stjohnspub" target="_blank" rel="noopener" aria-label="Facebook do St. John's Irish Pub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-5 2.2-5 5v2H6v4h3v9h4v-9h3l1-4h-4V9c0-.6.4-1 1-1z" fill="currentColor"/></svg>
+        </a></li>
+        <li><a href="https://www.youtube.com/@StJohnsIrishPubTatuape/videos" target="_blank" rel="noopener" aria-label="YouTube do St. John's Irish Pub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor"/></svg>
+        </a></li>
       </ul>
     </div>
 
     <div class="footer__col">
       <h4>Endereço</h4>
       <address>
-        [RUA E NÚMERO]<br>
-        [BAIRRO] · [CIDADE]/[UF]<br>
-        CEP [CEP]
+        Rua Itapura, 1308<br>
+        Tatuapé · São Paulo/SP<br>
+        CEP 03310-000
       </address>
-      <ul class="social" aria-label="Redes sociais">
-        <li><a href="[LINK-INSTAGRAM]" aria-label="Instagram" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/></svg>
-        </a></li>
-        <li><a href="[LINK-FACEBOOK]" aria-label="Facebook" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-5 2.2-5 5v2H6v4h3v9h4v-9h3l1-4h-4V9c0-.6.4-1 1-1z" fill="currentColor"/></svg>
-        </a></li>
-        <li><a href="[LINK-YOUTUBE]" aria-label="YouTube" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor"/></svg>
-        </a></li>
-      </ul>
+      <p class="footer__map">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Itapura+1308+Tatuap%C3%A9+S%C3%A3o+Paulo+SP+03310-000" target="_blank" rel="noopener">
+          Como chegar
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        </a>
+      </p>
     </div>
   </div>
 
