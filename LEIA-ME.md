@@ -24,18 +24,31 @@ Suba os quatro no GitHub, na **raiz** do repositório. O Vercel detecta o
 
 ## O que ainda falta preencher
 
-Só restaram dois marcadores no `index.html`. Busque pelo texto entre colchetes:
+### 1. Link de compra dos botões — `script.js`, linha 32
 
-| Marcador | O que é | Onde aparece |
-|---|---|---|
-| `[LINK-DA-PLATAFORMA-DE-INGRESSOS]` | URL do checkout | Botão "Vamos Explorar", na dobra final |
-| `[HORÁRIO]` | Hora de abertura das portas | Primeira pergunta do FAQ |
+Todos os 11 botões de compra do site saem de **uma única linha**. Abra o
+`script.js` e cole a URL do checkout entre as aspas:
 
-Vale conferir também, no bloco `application/ld+json` do `<head>`:
-`"price": "0.00"` — troque pelo valor do lote atual para o Google exibir o preço.
+```js
+const LINK_INGRESSOS = 'https://www.sympla.com.br/evento/noite-dos-vikings-no-st-johns/3531587';
+```
 
-**Fazer todos os botões irem direto ao checkout:** substitua as 7 ocorrências de
-`href="#ingressos"` pela URL da plataforma.
+Já está preenchido com o link do Sympla. Header, os 7 botões das dobras, o "Vamos Explorar" e a barra fixa do
+celular passam a apontar para lá, abrindo em nova aba. Deixando `''` (vazio),
+eles apenas rolam a página até a seção final, como estão hoje.
+
+Os links **Ingressos** do menu e do rodapé continuam sendo âncoras internas de
+propósito — quem clica no menu quer navegar, não comprar.
+
+### 2. Horário — `index.html`
+
+Busque por `[HORÁRIO]` e troque pela hora de abertura das portas (primeira
+pergunta do FAQ).
+
+### 3. Preço no Google — `index.html`
+
+No bloco `application/ld+json` do `<head>`, troque `"price": "0.00"` pelo valor
+do lote atual.
 
 Já preenchidos: telefone com link de WhatsApp, e-mail, endereço completo do Tatuapé
 (no rodapé e no Schema.org), Instagram, Facebook e YouTube.

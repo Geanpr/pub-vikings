@@ -20,6 +20,18 @@
   'use strict';
 
   /* ==========================================================
+     00. CONFIGURAÇÃO — É AQUI QUE VOCÊ MEXE
+     ----------------------------------------------------------
+     Cole entre as aspas o link do checkout da plataforma de
+     ingressos. Todos os botões de compra do site passam a
+     apontar para ele automaticamente e abrem em nova aba.
+
+     Deixando vazio (''), os botões apenas rolam a página até
+     a seção final, como estão hoje.
+     ========================================================== */
+  const LINK_INGRESSOS = 'https://www.sympla.com.br/evento/noite-dos-vikings-no-st-johns/3531587';
+
+  /* ==========================================================
      01. UTILITÁRIOS
      ========================================================== */
   const $  = (sel, ctx) => (ctx || document).querySelector(sel);
@@ -581,6 +593,15 @@
 
   const Misc = (function () {
     function init() {
+      // Aplica o link de compra em todos os botões marcados com data-cta
+      if (LINK_INGRESSOS) {
+        $$('a[data-cta]').forEach(a => {
+          a.href = LINK_INGRESSOS;
+          a.target = '_blank';
+          a.rel = 'noopener';
+        });
+      }
+
       // Ano no rodapé
       const y = $('#year');
       if (y) y.textContent = new Date().getFullYear();
@@ -623,6 +644,7 @@
       $$('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
           const id = a.getAttribute('href');
+          if (!id || id.charAt(0) !== '#') return;   // virou link externo
           if (!id || id === '#') return;
           const target = document.querySelector(id);
           if (!target) return;
