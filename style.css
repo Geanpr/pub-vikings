@@ -934,6 +934,26 @@ p:last-child{ margin-bottom:0; }
 }
 
 
+/* Fecho da grade de cards */
+.cards__outro{
+  margin:clamp(30px,3.4vw,44px) auto 0;
+  max-width:60ch;
+  text-align:center;
+  font-family:var(--f-sub);
+  font-style:italic;
+  font-size:clamp(19px,2vw,25px);
+  color:#EDE4D2;
+  letter-spacing:.02em;
+}
+.cards__outro strong{
+  font-family:var(--f-title);
+  font-style:normal;
+  font-weight:700;
+  letter-spacing:.08em;
+  color:var(--gold);
+}
+
+
 /* ============================================================
    12. DOBRA 4 — TIMELINE
    ============================================================ */
@@ -1168,25 +1188,27 @@ p:last-child{ margin-bottom:0; }
   color:var(--text-3);
   line-height:1.65;
 }
+/* itens de frase única (sem título + descrição) */
+.panel__list li > div > span{
+  display:block;
+  font-size:14.5px;
+  line-height:1.65;
+  color:#E7DFCF;
+}
 
 .tick{
   position:relative;
-  width:26px; height:26px; flex:none;
-  margin-top:2px;
+  display:grid; place-items:center;
+  width:28px; height:28px; flex:none;
+  margin-top:1px;
+  color:var(--gold);
   border-radius:50%;
   border:1px solid rgba(200,155,60,.4);
   background:radial-gradient(circle at 40% 30%, rgba(200,155,60,.22), rgba(0,0,0,.5));
   box-shadow:0 0 14px rgba(200,155,60,.18);
   transition:box-shadow .4s, transform .4s var(--ease);
 }
-.tick::after{
-  content:'';
-  position:absolute; left:9px; top:5.5px;
-  width:6px; height:11px;
-  border-right:2px solid var(--gold);
-  border-bottom:2px solid var(--gold);
-  transform:rotate(42deg);
-}
+.tick svg{ width:16px; height:16px; }
 .tick--rune::after{
   content:'';
   left:12px; top:6px;

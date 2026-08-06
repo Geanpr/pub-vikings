@@ -40,12 +40,7 @@ eles apenas rolam a página até a seção final, como estão hoje.
 Os links **Ingressos** do menu e do rodapé continuam sendo âncoras internas de
 propósito — quem clica no menu quer navegar, não comprar.
 
-### 2. Horário — `index.html`
-
-Busque por `[HORÁRIO]` e troque pela hora de abertura das portas (primeira
-pergunta do FAQ).
-
-### 3. Preço no Google — `index.html`
+### 2. Preço no Google — `index.html`
 
 No bloco `application/ld+json` do `<head>`, troque `"price": "0.00"` pelo valor
 do lote atual.
@@ -130,6 +125,6 @@ Nenhuma versão se perde.
 
 ## Copy
 
-Hero, títulos das dobras, nomes dos 7 cards, as 5 etapas da timeline e todos os
-textos de botão seguem exatamente o briefing. Os textos de apoio das Dobras 2, 5, 6
-e 8 e as 7 perguntas do FAQ foram redigidos no mesmo tom — troque à vontade.
+Todos os textos do site são os aprovados pelo cliente. Horários oficiais: portões
+às 18h, primeira banda às 21h, encerramento às 5h — refletidos no FAQ, no contador
+de "11h de celebração" e nas datas do Schema.org.
