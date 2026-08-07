@@ -1473,6 +1473,32 @@ p:last-child{ margin-bottom:0; }
 
 
 /* ============================================================
+   17b. SEÇÃO "A ORIGEM" (841)
+   ============================================================ */
+.origin__content{
+  max-width:700px;
+  text-align:center;
+}
+.origin__content .eyebrow{ justify-content:center; }
+.origin__content .title{ margin-bottom:32px; }
+.origin__content p{ text-align:left; }
+.origin__content p.origin__highlight{
+  text-align:center;
+  margin:8px 0 28px;
+}
+.origin__content p.origin__source{
+  margin-top:32px;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.08);
+  text-align:center;
+  font-size:12px;
+  letter-spacing:.08em;
+  color:var(--text-3);
+  opacity:.75;
+}
+
+
+/* ============================================================
    18. ANIMAÇÕES DE SCROLL (REVEAL)
    ============================================================ */
 /* Sem JavaScript (ou antes dele rodar) tudo permanece visível.
