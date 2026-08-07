@@ -1499,6 +1499,14 @@ p:last-child{ margin-bottom:0; }
   border-radius:12px;
 }
 .frame--video .video-wrapper{ z-index:1; }
+/* O vídeo é mais "quadrado" que o contêiner 16:9, então o player do Panda
+   sobra faixas pretas nas laterais. Amplia o vídeo (cortando um pouco o
+   topo/base) para preencher a largura sem tocar na moldura. Ajuste o
+   valor de scale() se ainda sobrar preto ou cortar demais. */
+.frame--video .video-wrapper iframe{
+  transform:scale(1.4);
+  transform-origin:center;
+}
 .video-wrapper iframe{
   position:absolute;
   inset:0;
