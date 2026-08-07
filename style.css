@@ -1489,6 +1489,25 @@ p:last-child{ margin-bottom:0; }
 
 
 /* ============================================================
+   17c. VÍDEO — SEÇÃO "SOBRE O ST. JOHN'S"
+   ============================================================ */
+.video-wrapper{
+  position:relative;
+  width:100%;
+  aspect-ratio:2/1;
+  overflow:hidden;
+  border-radius:12px;
+}
+.video-wrapper iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:none;
+}
+
+
+/* ============================================================
    18. ANIMAÇÕES DE SCROLL (REVEAL)
    ============================================================ */
 /* Sem JavaScript (ou antes dele rodar) tudo permanece visível.

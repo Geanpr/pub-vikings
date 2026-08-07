@@ -643,13 +643,18 @@
 <section class="section section--forge" id="sobre">
   <div class="container split split--reverse">
     <div class="split__media reveal reveal--left">
-      <div class="frame frame--iron frame--wide" data-parallax="0.05">
-        <!-- IMAGEM — Dobra 8: fachada do St. John's Irish Pub -->
-        <img src="https://wsrv.nl/?url=desenvolvedor.worksmidia.com.br/news/WhatsApp%20Image%202026-08-06%20at%2014.26.17.jpeg&amp;w=1200&amp;q=72&amp;output=webp&amp;we" width="1200" height="900" decoding="async" alt="Salão do St. John's Irish Pub" loading="lazy" data-img>
-        <span class="frame__nail frame__nail--tl" aria-hidden="true"></span>
-        <span class="frame__nail frame__nail--tr" aria-hidden="true"></span>
-        <span class="frame__nail frame__nail--bl" aria-hidden="true"></span>
-        <span class="frame__nail frame__nail--br" aria-hidden="true"></span>
+      <!-- Proporção: confirme no painel do Panda Video a proporção real do arquivo.
+           Padrão abaixo é 2:1, igual ao embed original (720x360). Se for 16:9, troque
+           para aspect-ratio:16/9. Autoplay/mudo/loop são configurados no painel do
+           Panda, não por parâmetro de URL — autoplay só funciona com o vídeo mudo. -->
+      <div class="video-wrapper">
+        <iframe
+          id="panda-88333323-9939-4b6e-8730-94bacc6604b0"
+          src="https://player-vz-41253a25-57c.tv.pandavideo.com.br/embed/?v=88333323-9939-4b6e-8730-94bacc6604b0"
+          title="Uma noite no St. John's Irish Pub"
+          allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
+          allowfullscreen
+          loading="lazy"></iframe>
       </div>
     </div>
 
