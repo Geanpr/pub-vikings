@@ -648,14 +648,20 @@
            ajuste aspect-ratio no .video-wrapper (style.css) para evitar barras pretas.
            Autoplay/mudo/loop são configurados no painel do Panda, não por parâmetro de
            URL — autoplay só funciona com o vídeo mudo. -->
-      <div class="video-wrapper">
-        <iframe
-          id="panda-fc97f9d2-551b-4060-8264-5e650ea9bf44"
-          src="https://player-vz-41253a25-57c.tv.pandavideo.com.br/embed/?v=fc97f9d2-551b-4060-8264-5e650ea9bf44"
-          title="Uma noite no St. John's Irish Pub"
-          allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
-          allowfullscreen
-          loading="lazy"></iframe>
+      <div class="frame frame--iron frame--wide frame--video" data-parallax="0.05">
+        <div class="video-wrapper">
+          <iframe
+            id="panda-fc97f9d2-551b-4060-8264-5e650ea9bf44"
+            src="https://player-vz-41253a25-57c.tv.pandavideo.com.br/embed/?v=fc97f9d2-551b-4060-8264-5e650ea9bf44"
+            title="Uma noite no St. John's Irish Pub"
+            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
+            allowfullscreen
+            loading="lazy"></iframe>
+        </div>
+        <span class="frame__nail frame__nail--tl" aria-hidden="true"></span>
+        <span class="frame__nail frame__nail--tr" aria-hidden="true"></span>
+        <span class="frame__nail frame__nail--bl" aria-hidden="true"></span>
+        <span class="frame__nail frame__nail--br" aria-hidden="true"></span>
       </div>
     </div>
 
