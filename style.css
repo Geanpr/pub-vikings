@@ -1494,7 +1494,7 @@ p:last-child{ margin-bottom:0; }
 .video-wrapper{
   position:relative;
   width:100%;
-  aspect-ratio:2/1;
+  aspect-ratio:16/9;
   overflow:hidden;
   border-radius:12px;
 }
