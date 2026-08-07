@@ -1498,9 +1498,7 @@ p:last-child{ margin-bottom:0; }
   overflow:hidden;
   border-radius:12px;
 }
-.frame--video{ padding:0; }
-.frame--video::after{ inset:0; }
-.frame--video .video-wrapper{ z-index:1; border-radius:0; }
+.frame--video .video-wrapper{ z-index:1; }
 .video-wrapper iframe{
   position:absolute;
   inset:0;
