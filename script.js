@@ -31,6 +31,20 @@
      ========================================================== */
   const LINK_INGRESSOS = 'https://www.sympla.com.br/evento/noite-dos-vikings-no-st-johns/3531587';
 
+  /* Status de cada lote na tabela de ingressos (seção "#ingressos").
+     Valores aceitos: 'disponivel' | 'esgotado' | 'em-breve'
+     Troque aqui conforme a campanha avança — não precisa editar o HTML. */
+  const LOTES = {
+    skald:     'disponivel',
+    berserker: 'em-breve',
+    jarl:      'em-breve'
+  };
+  const LOTES_LABEL = {
+    disponivel: 'Disponível',
+    esgotado:   'Esgotado',
+    'em-breve': 'Em Breve'
+  };
+
   /* ==========================================================
      01. UTILITÁRIOS
      ========================================================== */
@@ -258,6 +272,7 @@
     function animate(el) {
       const target = parseFloat(el.dataset.count) || 0;
       const pad    = parseInt(el.dataset.pad || '0', 10);
+      const prefix = el.dataset.prefix || '';
       const suffix = el.dataset.suffix || '';
       const dur    = 1700;
       const start  = performance.now();
@@ -268,7 +283,7 @@
         let val = Math.round(target * eased);
         let str = String(val);
         if (pad) while (str.length < pad) str = '0' + str;
-        el.textContent = str + suffix;
+        el.textContent = prefix + str + suffix;
         if (t < 1) requestAnimationFrame(frame);
       }
       requestAnimationFrame(frame);
@@ -278,12 +293,14 @@
       const nums = $$('[data-count]');
       if (!nums.length) return;
 
+      // O HTML já traz o valor final certo (ver index.html) — isso é só o
+      // estado de repouso caso o IntersectionObserver nunca dispare.
       if (REDUCED || !('IntersectionObserver' in window)) {
         nums.forEach(el => {
           const pad = parseInt(el.dataset.pad || '0', 10);
           let s = String(el.dataset.count);
           while (s.length < pad) s = '0' + s;
-          el.textContent = s + (el.dataset.suffix || '');
+          el.textContent = (el.dataset.prefix || '') + s + (el.dataset.suffix || '');
         });
         return;
       }
@@ -601,6 +618,15 @@
           a.rel = 'noopener';
         });
       }
+
+      // Status dos lotes (config LOTES no topo do arquivo)
+      $$('.lote').forEach(el => {
+        const key = el.dataset.lote;
+        const status = LOTES[key] || 'em-breve';
+        el.classList.add('lote--' + status);
+        const statusEl = $('.lote__status', el);
+        if (statusEl) statusEl.textContent = LOTES_LABEL[status];
+      });
 
       // Ano no rodapé
       const y = $('#year');

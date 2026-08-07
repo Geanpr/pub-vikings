@@ -1451,25 +1451,245 @@ p:last-child{ margin-bottom:0; }
 }
 .footer__bottom p{ margin:0; }
 
-/* CTA fixo mobile */
+/* CTA fixo mobile — barra com preço + botão */
 .sticky-cta{
   position:fixed;
-  left:16px; right:16px; bottom:16px;
+  left:12px; right:12px; bottom:12px;
   z-index:880;
   display:none;
-  align-items:center; justify-content:center;
-  min-height:56px;
-  padding:0 20px;
+  align-items:center; justify-content:space-between;
+  gap:14px;
+  padding:10px 10px 10px 18px;
   border-radius:var(--radius);
-  background:linear-gradient(180deg,var(--gold-hover),var(--gold) 45%,#a97e2a);
-  color:#120C04;
-  font-size:12.5px; font-weight:700;
-  letter-spacing:.13em; text-transform:uppercase;
-  box-shadow:0 14px 34px rgba(0,0,0,.65), 0 0 22px rgba(200,155,60,.32);
+  background:rgba(15,13,10,.94);
+  border:1px solid rgba(200,155,60,.3);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  box-shadow:0 14px 34px rgba(0,0,0,.65), 0 0 22px rgba(200,155,60,.22);
   transform:translateY(140%);
   transition:transform .5s var(--ease-out);
 }
 .sticky-cta.is-visible{ transform:none; }
+.sticky-cta__price{
+  flex:1;
+  font-size:12.5px;
+  color:var(--text-2);
+  white-space:nowrap;
+}
+.sticky-cta__price strong{ color:var(--gold); }
+.sticky-cta__btn{ flex:none; --btn-h:44px; padding:0 18px; font-size:11px; }
+
+
+/* ============================================================
+   17b. AJUSTES — ORIGEM (841) · PREÇO · PROVA SOCIAL · KIT DO GUERREIRO
+   ============================================================ */
+
+/* Faixa fina — gancho 841 */
+.hook-strip{
+  position:relative;
+  z-index:2;
+  background:#060606;
+  border-top:1px solid rgba(200,155,60,.16);
+  border-bottom:1px solid rgba(200,155,60,.16);
+  padding:16px 24px;
+  margin:0;
+  text-align:center;
+  font-family:var(--f-sub);
+  font-style:italic;
+  font-size:clamp(13.5px,1.3vw,16.5px);
+  color:var(--text-3);
+  letter-spacing:.02em;
+}
+
+/* Seção "A Origem" */
+.origin__content{
+  max-width:700px;
+  text-align:center;
+}
+.origin__content .eyebrow{ justify-content:center; }
+.origin__content .title{ margin-bottom:32px; }
+.origin__content p{ text-align:left; }
+.origin__highlight{
+  font-family:var(--f-sub);
+  font-style:italic;
+  font-size:clamp(22px,2.6vw,32px);
+  color:var(--gold);
+  text-align:center;
+  margin:8px 0 28px;
+  letter-spacing:.02em;
+}
+.origin__highlight strong{ font-weight:600; }
+.origin__source{
+  margin-top:32px;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.08);
+  text-align:center;
+  font-size:12px;
+  letter-spacing:.08em;
+  color:var(--text-3);
+  opacity:.75;
+}
+
+/* Preço abaixo do CTA do Hero */
+.hero__price-note{
+  margin:18px 0 0;
+  text-align:center;
+  font-size:13px;
+  letter-spacing:.04em;
+  color:var(--text-3);
+}
+.hero__price-note strong{ color:var(--gold); font-weight:700; }
+
+/* Tabela de lotes (seção Chamado Final) */
+.lotes{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  max-width:900px;
+  margin:0 auto 44px;
+  text-align:left;
+}
+.lote{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  padding:22px 22px 20px;
+  border-radius:var(--radius);
+  border:1px solid rgba(255,255,255,.1);
+  background:linear-gradient(165deg, rgba(30,30,30,.6), rgba(10,10,10,.75));
+  transition:opacity .4s, border-color .4s, box-shadow .4s, transform .4s var(--ease);
+}
+.lote__ordem{
+  font-size:10.5px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--text-3);
+}
+.lote__nome{
+  font-family:var(--f-title);
+  font-size:18px; font-weight:700; letter-spacing:.03em;
+  color:#F1E8D7;
+}
+.lote__nome em{
+  display:block;
+  font-family:var(--f-sub); font-style:italic; font-weight:400;
+  font-size:13.5px; letter-spacing:.01em; color:var(--text-3);
+  margin-top:2px;
+}
+.lote__valor{
+  font-family:var(--f-title);
+  font-size:22px; font-weight:700;
+  color:var(--gold);
+  margin-top:6px;
+}
+.lote__status{
+  align-self:flex-start;
+  margin-top:8px;
+  padding:4px 12px;
+  border-radius:100px;
+  font-size:10px; letter-spacing:.14em; text-transform:uppercase; font-weight:600;
+  border:1px solid rgba(255,255,255,.16);
+  color:var(--text-3);
+}
+.lote--disponivel{
+  border-color:rgba(200,155,60,.55);
+  box-shadow:0 18px 40px rgba(0,0,0,.5), var(--glow-gold);
+}
+.lote--disponivel .lote__status{
+  border-color:rgba(120,200,120,.5);
+  color:#9be79b;
+  background:rgba(120,200,120,.08);
+}
+.lote--em-breve{ opacity:.55; }
+.lote--em-breve .lote__status{ color:var(--text-3); }
+.lote--esgotado{ opacity:.4; }
+.lote--esgotado .lote__nome,
+.lote--esgotado .lote__valor{ text-decoration:line-through; }
+.lote--esgotado .lote__status{
+  border-color:rgba(200,90,90,.4);
+  color:#e79b9b;
+  background:rgba(200,90,90,.08);
+}
+
+/* Faixa de fotos — A Casa Cheia */
+.proof-grid{
+  display:grid;
+  grid-template-columns:1.8fr 1fr;
+  grid-template-rows:1fr 1fr;
+  gap:16px;
+}
+.proof-grid__item{
+  position:relative;
+  margin:0;
+  overflow:hidden;
+  border-radius:var(--radius);
+  border:1px solid rgba(200,155,60,.16);
+  box-shadow:var(--shadow-deep);
+}
+.proof-grid__item--main{ grid-row:span 2; }
+.proof-grid__item img{
+  width:100%; height:100%;
+  object-fit:cover;
+  display:block;
+  filter:saturate(.9) contrast(1.05);
+  transition:transform 1.2s var(--ease-out);
+}
+.proof-grid__item:hover img{ transform:scale(1.04); }
+.proof-grid__item figcaption{
+  position:absolute; left:0; right:0; bottom:0;
+  padding:34px 18px 14px;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.82));
+  font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+  color:#EDE4D2; font-weight:500;
+}
+
+/* Vídeo de prova social */
+.video-prova{
+  margin:0 auto;
+  max-width:960px;
+  text-align:center;
+}
+.video-wrapper{
+  position:relative;
+  width:100%;
+  max-width:960px;
+  margin:0 auto;
+  aspect-ratio:var(--video-ratio, 2/1);
+  overflow:hidden;
+  border-radius:12px;
+  border:1px solid rgba(200,155,60,.2);
+  box-shadow:var(--shadow-deep);
+  background:#0e0c09;
+}
+.video-wrapper iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:none;
+}
+.video-prova figcaption{
+  margin-top:14px;
+  font-family:var(--f-sub);
+  font-style:italic;
+  font-size:14px;
+  letter-spacing:.05em;
+  color:var(--text-3);
+}
+
+/* Kit do guerreiro */
+.warrior-kit__list{ margin:28px 0; }
+.warrior-kit__list li{
+  display:flex; align-items:flex-start; gap:14px;
+  padding:10px 0;
+}
+.warrior-kit__list li > span:last-child{
+  font-size:15px;
+  color:#E7DFCF;
+  line-height:1.6;
+  padding-top:2px;
+}
+
+/* Line-up — placeholder */
+#programacao .section__cta{ margin-top:32px; }
 
 
 /* ============================================================
@@ -1553,6 +1773,12 @@ html.js .reveal--right{ transform:translate3d(46px,20px,0) scale(.985); }
 
   .duo{ grid-template-columns:1fr; }
   .timeline__list{ grid-template-columns:repeat(2,1fr); }
+
+  .lotes{ grid-template-columns:1fr; max-width:460px; }
+  .proof-grid{ grid-template-columns:1fr; grid-template-rows:auto; }
+  .proof-grid__item--main{ grid-row:auto; }
+  .proof-grid__item img{ aspect-ratio:4/3; }
+  .proof-grid__item--tall img{ aspect-ratio:4/5; }
 
   .brand__logo{ height:46px; }
   .header.is-stuck .brand__logo{ height:40px; }
